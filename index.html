@@ -75,7 +75,7 @@
             let email = prompt("Enter Email:");
             let rollno = prompt("Enter Roll Number:");
             let password = prompt("Enter Password:");
-            if (password !== "ankit123") {
+            if (password !== "9212") {
                 alert("Incorrect Password! Reloading...");
                 location.reload();
             } else {
@@ -120,17 +120,18 @@
 
     <script>
         const questions = [
-            { q: "Implement Breadth-First Search (BFS) for a given graph.", test: "Input: Graph with 5 nodes\nOutput: BFS traversal order" },
-            { q: "Implement Depth-First Search (DFS) for a graph traversal.", test: "Input: Graph with cycles\nOutput: DFS traversal order" },
-            { q: "Write a function to solve the 8-puzzle problem using A* search.", test: "Input: Initial puzzle state\nOutput: Solution steps" },
-            { q: "Implement Uniform Cost Search (UCS) for pathfinding.", test: "Input: Weighted graph\nOutput: Shortest path" },
-            { q: "Solve the N-Queens problem using backtracking.", test: "Input: N=8\nOutput: Valid board placements" },
-            { q: "Implement Bidirectional Search for finding the shortest path in an undirected graph.", test: "Input: Graph with two nodes\nOutput: Shortest path" },
-            { q: "Write a program to simulate Simulated Annealing for the Travelling Salesman Problem (TSP).", test: "Input: Distance matrix\nOutput: Approximate shortest tour" },
-            { q: "Implement Hill Climbing algorithm for the 8-queens problem.", test: "Input: Initial board\nOutput: Final board state" },
-            { q: "Write a program to demonstrate Uniform Cost Search (UCS) for finding the shortest path in a weighted graph.", test: "Input: Graph with different weights\nOutput: Optimal path" },
-            { q: "Implement Depth-Limited Search (DLS) for a given tree with a depth limit.", test: "Input: Tree structure, Depth=3\nOutput: Nodes visited" }
-        ];
+    { q: "The Fire Escape Plan: A skyscraper has N floors connected by stairs and elevators. Find the minimum number of steps to evacuate from floor 1 to N.", test: "Input: N=5, M=4, Connections=[(1,2),(2,3),(3,4),(4,5)]\nOutput: 4" },
+    { q: "The Underground Tunnels: A team of archaeologists must explore all chambers in an underground tunnel network. Some tunnels form loops. Perform a complete exploration starting from chamber 1.", test: "Input: N=6, M=5, Connections=[(1,2),(2,3),(2,4),(4,5),(5,6)]\nOutput: 1 2 3 4 5 6" },
+    { q: "The Warehouse Robot: A warehouse robot must navigate a grid avoiding obstacles. The grid has open paths (0) and obstacles (1). Find the shortest path from (1,1) to (N,N).", test: "Input: N=3, Grid=[[0,0,0],[1,1,0],[0,0,0]]\nOutput: 4" },
+    { q: "The Delivery Drone: A drone needs to deliver a package from location 1 to location N in a city where roads have varying costs. Find the minimum delivery cost.", test: "Input: N=5, M=6, Roads=[(1,2,10),(1,3,5),(2,4,2),(3,4,9),(3,5,3),(4,5,4)]\nOutput: 8" },
+    { q: "The Chess Queen Challenge: Find a valid arrangement of N queens on an N×N chessboard such that no two queens attack each other.", test: "Input: N=4\nOutput: . Q . . \n. . . Q \nQ . . . \n. . Q ." },
+    { q: "The City Travel Plan: A traveler must find the shortest number of roads to reach city B from city A.", test: "Input: N=6, M=5, A=1, B=6, Roads=[(1,2),(2,3),(3,4),(4,5),(5,6)]\nOutput: 5" },
+    { q: "The Smart Traffic System: An ambulance must find the fastest route through a grid-based city where road segments have varying traffic delays.", test: "Input: N=4, Grid=[[0,0,0,1],[1,1,0,1],[0,0,0,0],[1,1,0,0]]\nOutput: 6" },
+    { q: "The Hidden Treasure: A treasure hunter must find the shortest path to a hidden artifact inside a cave system where tunnels require different energy levels to traverse.", test: "Input: N=7, M=6, Caves=[(1,2,3),(2,3,2),(3,4,5),(4,5,1),(5,6,3),(6,7,2)]\nOutput: 11" },
+    { q: "The AI Chess Player: An AI chess bot must solve the N-Queens problem using Hill Climbing but can get stuck in local maxima. Implement a solution with random restarts.", test: "Input: N=8\nOutput: Valid Board Placement" },
+    { q: "The Robot Factory: A maintenance bot must visit N stations exactly once and return to the start while minimizing the total travel distance.", test: "Input: N=5, Distance Matrix=[(1,2,10),(1,3,8),(2,3,7),(2,4,5),(3,5,6),(4,5,4)]\nOutput: Approximate Shortest Tour" }
+];
+
         let selectedQuestions = [];
         while (selectedQuestions.length < 2) {
             let q = questions[Math.floor(Math.random() * questions.length)];
