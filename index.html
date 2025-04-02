@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Exam Platform</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            width: 15%;
+            align-items: center;
+        }
+        .camera-view {
+            width: 120px;
+            height: 120px;
+            border: 1px solid black;
+            margin-bottom: 10px;
+        }
+        .user-info {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .switch-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .switch-table th, .switch-table td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+        .question-panel {
+            width: 30%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            position: relative;
+        }
+        .question-panel::before {
+            content: "AI LAB EXAM";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 18px;
+            color: rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+        }
+        .code-editor {
+            width: 55%;
+            position: relative;
+        }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+        .resizable {
+            resize: horizontal;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function login() {
+            let email = prompt("Enter Email:");
+            let rollno = prompt("Enter Roll Number:");
+            let password = prompt("Enter Password:");
+            if (password !== "ankit123") {
+                alert("Incorrect Password! Reloading...");
+                location.reload();
+            } else {
+                document.getElementById("user-name").innerText = email;
+                document.getElementById("user-roll").innerText = rollno;
+            }
+        }
+        login();
+    </script>
+    <div class="sidebar">
+        <video class="camera-view" id="camera" autoplay></video>
+        <div class="user-info">
+            <p id="user-name">Email: Loading...</p>
+            <p id="user-roll">Roll No: Loading...</p>
+        </div>
+        <table class="switch-table">
+            <tr>
+                <th>Mode</th>
+                <th>Switch</th>
+            </tr>
+            <tr>
+                <td>Exam</td>
+                <td><input type="checkbox" checked></td>
+            </tr>
+        </table>
+        <p>Tab Switch Count: <span id="tab-count">0</span></p>
+    </div>
+
+    <div class="question-panel resizable">
+        <h2>Your Questions</h2>
+        <p id="question1">Loading question...</p>
+        <p><strong>Test Cases:</strong></p>
+        <pre id="testcases1">Loading test cases...</pre>
+        <p id="question2">Loading question...</p>
+        <p><strong>Test Cases:</strong></p>
+        <pre id="testcases2">Loading test cases...</pre>
+    </div>
+
+    <div class="code-editor resizable">
+        <iframe src="https://www.onlinegdb.com/online_python_compiler#"></iframe>
+    </div>
+
+    <script>
+        const questions = [
+            { q: "Implement Breadth-First Search (BFS) for a given graph.", test: "Input: Graph with 5 nodes\nOutput: BFS traversal order" },
+            { q: "Implement Depth-First Search (DFS) for a graph traversal.", test: "Input: Graph with cycles\nOutput: DFS traversal order" },
+            { q: "Write a function to solve the 8-puzzle problem using A* search.", test: "Input: Initial puzzle state\nOutput: Solution steps" },
+            { q: "Implement Uniform Cost Search (UCS) for pathfinding.", test: "Input: Weighted graph\nOutput: Shortest path" },
+            { q: "Solve the N-Queens problem using backtracking.", test: "Input: N=8\nOutput: Valid board placements" },
+            { q: "Implement Bidirectional Search for finding the shortest path in an undirected graph.", test: "Input: Graph with two nodes\nOutput: Shortest path" },
+            { q: "Write a program to simulate Simulated Annealing for the Travelling Salesman Problem (TSP).", test: "Input: Distance matrix\nOutput: Approximate shortest tour" },
+            { q: "Implement Hill Climbing algorithm for the 8-queens problem.", test: "Input: Initial board\nOutput: Final board state" },
+            { q: "Write a program to demonstrate Uniform Cost Search (UCS) for finding the shortest path in a weighted graph.", test: "Input: Graph with different weights\nOutput: Optimal path" },
+            { q: "Implement Depth-Limited Search (DLS) for a given tree with a depth limit.", test: "Input: Tree structure, Depth=3\nOutput: Nodes visited" }
+        ];
+        let selectedQuestions = [];
+        while (selectedQuestions.length < 2) {
+            let q = questions[Math.floor(Math.random() * questions.length)];
+            if (!selectedQuestions.includes(q)) selectedQuestions.push(q);
+        }
+        document.getElementById("question1").innerText = selectedQuestions[0].q;
+        document.getElementById("testcases1").innerText = selectedQuestions[0].test;
+        document.getElementById("question2").innerText = selectedQuestions[1].q;
+        document.getElementById("testcases2").innerText = selectedQuestions[1].test;
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                document.getElementById("camera").srcObject = stream;
+            })
+            .catch(error => console.log("Camera access denied"));
+
+        let tabCount = 0;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                tabCount++;
+                document.getElementById("tab-count").innerText = tabCount;
+            }
+        });
+    </script>
+</body>
+</html>
